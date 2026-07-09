@@ -10,6 +10,15 @@
   "monorepo": true,
   "root": "apps/learn-kafkah",
   "projects": {
+    "course-service": {
+      "type": "application",
+      "root": "apps/course-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/course-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/course-service/tsconfig.app.json"
+      }
+    },
     "learn-kafkah": {
       "type": "application",
       "root": "apps/learn-kafkah",
