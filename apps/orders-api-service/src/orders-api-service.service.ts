@@ -1,4 +1,10 @@
-import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  Logger,
+  NotFoundException,
+  OnModuleInit,
+} from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderCreatedEvent } from '‎libs/shared/event.contracts';
@@ -71,5 +77,15 @@ export class OrdersApiService implements OnModuleInit {
     );
 
     return newOrder;
+  }
+
+  getOrder(orderId: string): Order {
+    const order = this.ordersDB.get(orderId);
+    if (!order) {
+      this.logger.warn(`[GET Service] Order not found: ${orderId}`);
+      throw new NotFoundException(`Order with ID ${orderId} not found`);
+    }
+
+    return order;
   }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
 import { OrdersApiService } from './orders-api-service.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 
@@ -15,5 +15,13 @@ export class OrdersApiServiceController {
     );
 
     return this.ordersApiService.createOrder(createOrderDto);
+  }
+
+  @Get(':orderId')
+  getOrder(@Param('orderId') orderId: string) {
+    this.logger.log(
+      `[REST] Received GET request to check status of order: ${orderId}`,
+    );
+    return this.ordersApiService.getOrder(orderId);
   }
 }
