@@ -14,7 +14,6 @@ export class PaymentServiceController {
     this.logger.log(
       `[Kafka Listener] Received 'order.created' event for Order: ${data.orderId}`,
     );
-
     // Process the payment simulation asynchronously
     await this.paymentServiceService.processPayment(data);
   }
