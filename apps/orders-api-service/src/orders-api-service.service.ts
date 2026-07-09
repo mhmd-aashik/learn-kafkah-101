@@ -88,4 +88,24 @@ export class OrdersApiService implements OnModuleInit {
 
     return order;
   }
+
+  updateStatus(orderId: string, newStatus: Order['status'], reason?: string) {
+    const order = this.ordersDB.get(orderId);
+    if (!order) {
+      this.logger.error(
+        `[Order Service] Failed to update status for Order ${orderId}: Order not found in database!`,
+      );
+
+      return;
+    }
+
+    const oldStatus = order.status;
+    order.status = newStatus;
+    this.ordersDB.set(orderId, order);
+
+    this.logger.log(
+      `[Order Service] Order ${orderId} status transitioned: ${oldStatus} -> ${newStatus}` +
+        (reason ? ` (Reason: ${reason})` : ''),
+    );
+  }
 }
