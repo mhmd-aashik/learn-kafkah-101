@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { OrdersApiServiceController } from './orders-api-service.controller';
-import { OrdersApiServiceService } from './orders-api-service.service';
+import { OrdersApiService } from './orders-api-service.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
@@ -32,6 +32,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     ]),
   ],
   controllers: [OrdersApiServiceController],
-  providers: [OrdersApiServiceService],
+  providers: [OrdersApiService],
 })
 export class OrdersApiServiceModule {}
