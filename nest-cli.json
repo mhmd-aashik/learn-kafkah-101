@@ -1,8 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/learn-kafkah/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/learn-kafkah/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/learn-kafkah",
+  "projects": {
+    "learn-kafkah": {
+      "type": "application",
+      "root": "apps/learn-kafkah",
+      "entryFile": "main",
+      "sourceRoot": "apps/learn-kafkah/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/learn-kafkah/tsconfig.app.json"
+      }
+    },
+    "orders-api-service": {
+      "type": "application",
+      "root": "apps/orders-api-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/orders-api-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/orders-api-service/tsconfig.app.json"
+      }
+    }
   }
 }
